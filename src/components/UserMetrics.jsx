@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, Users, UserPlus, UserMinus } from 'lucide-react';
 import Chart from 'react-apexcharts';
+import fluencyLogo from '../assets/fluency-logo.png';
 
 const UserMetrics = () => {
   const [mounted, setMounted] = useState(false);
@@ -377,7 +378,7 @@ const UserMetrics = () => {
       {/* Logo */}
       <div className={`flex justify-center mt-6 mb-12 transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <img 
-          src="/src/assets/fluency-logo.png" 
+          src={fluencyLogo} 
           alt="Fluency Logo" 
           className="h-16"
         />
