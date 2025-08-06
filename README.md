@@ -14,7 +14,63 @@ This assessment project demonstrates the ability to create compelling data visua
 - **Responsive Design**: Mobile-first approach with seamless desktop experience
 - **Modern UI/UX**: Creator-native design with smooth animations and transitions
 - **Real-time Insights**: Dynamic calculation of key metrics and trends
-- **Accessible**: Built with accessibility best practices in mind
+
+## 🎨 Design Philosophy
+
+This dashboard is designed with the creator economy in mind:
+
+- **Creator-Native**: UI patterns familiar to influencers and content creators
+- **Trend-Aware**: Modern design inspired by popular social media platforms
+- **Performance-First**: Optimized for fast loading and smooth interactions
+- **Mobile-Responsive**: Looks great on all devices, from mobile to desktop
+
+## 🎭 Features Showcase
+
+### Summary Cards
+
+- **Total New Users**: Sum of last 10 days of new user data
+- **Net User Change**: Sum of last 10 days of gained/lost data with gain/loss indicators
+- **Average Daily Growth**: Mean of new users over the last 10 days
+
+### Quick Insights
+
+- **Peak Day**: Highest new user acquisition day within the last 10 days
+- **Growth Trend**: Overall trend analysis based on net change over last 10 days
+- All metrics calculated from the same 10-day period as the charts
+
+## 🌟 Key Highlights
+
+- **Smooth Animations**: Page elements fade in with staggered timing
+- **Interactive Tooltips**: Hover over chart elements for detailed data
+- **Gradient Backgrounds**: Modern visual appeal with subtle gradients
+- **Icon Integration**: Contextual icons from Lucide React
+- **TypeScript Ready**: Easy migration to TypeScript if needed
+
+## 📱 Responsive Breakpoints
+
+- **Mobile**: 320px - 767px
+- **Tablet**: 768px - 1023px
+- **Desktop**: 1024px+
+
+## 🎯 Assessment Requirements Met
+
+✅ **Two Chart Types**: Area chart and bar chart implemented  
+✅ **ApexCharts Integration**: Using react-apexcharts library  
+✅ **Responsive Container**: Mobile-first design principles  
+✅ **Data Visualization**: Both datasets accurately represented  
+✅ **Modern UI/UX**: Creator-focused design aesthetic  
+✅ **Performance Optimized**: Fast loading with smooth animations
+
+## 🔮 Future Enhancements
+
+- Real-time data integration
+- Additional chart types (pie, donut, scatter)
+- Date range selection
+- Export functionality
+- Dark/light mode toggle
+- Advanced filtering options
+
+---
 
 ## 🚀 Tech Stack
 
@@ -29,14 +85,16 @@ This assessment project demonstrates the ability to create compelling data visua
 ### New Users Chart
 
 - **Type**: Area chart with gradient fill
-- **Data**: `[3,5,1,0,2,7,1,9,13,3]` (last 10 days)
+- **Full Dataset**: `[3,5,1,0,2,7,1,9,13,3,5,6,1,0]` (14 days)
+- **Displayed Data**: Last 10 days `[2,7,1,9,13,3,5,6,1,0]`
 - **Features**: Smooth curves, hover tooltips, animated rendering
 
 ### Users Gained/Lost Chart
 
 - **Type**: Bar chart with conditional coloring
-- **Data**: `[2,-3,5,1,-1,0,-2,4,1,-2]` (last 10 days)
-- **Features**: Color-coded gains (green) and losses (red), current day highlighting
+- **Full Dataset**: `[2,-3,5,1,-1,0,-2,4,1,-2,5,7,-3,0,1,-1]` (16 days)
+- **Displayed Data**: Last 10 days `[-1,0,-2,4,1,-2,5,7,-3,0]`
+- **Features**: Color-coded gains (green) and losses (red), zero values visible and hoverable
 
 ## 🛠️ Development
 
@@ -76,43 +134,6 @@ npm run lint
 
 The development server runs on `http://localhost:5173` with hot module replacement enabled.
 
-## 🎨 Design Philosophy
-
-This dashboard is designed with the creator economy in mind:
-
-- **Creator-Native**: UI patterns familiar to influencers and content creators
-- **Trend-Aware**: Modern design inspired by popular social media platforms
-- **Performance-First**: Optimized for fast loading and smooth interactions
-- **Mobile-Responsive**: Looks great on all devices, from mobile to desktop
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: 320px - 767px
-- **Tablet**: 768px - 1023px
-- **Desktop**: 1024px+
-
-## 🎭 Features Showcase
-
-### Summary Cards
-
-- Total New Users count
-- Net User Change with gain/loss indicators
-- Average Daily Growth calculation
-
-### Quick Insights
-
-- Peak performance day identification
-- Growth trend analysis
-- Automated metric calculations
-
-## 🌟 Key Highlights
-
-- **Smooth Animations**: Page elements fade in with staggered timing
-- **Interactive Tooltips**: Hover over chart elements for detailed data
-- **Gradient Backgrounds**: Modern visual appeal with subtle gradients
-- **Icon Integration**: Contextual icons from Lucide React
-- **TypeScript Ready**: Easy migration to TypeScript if needed
-
 ## 📄 Project Structure
 
 ```
@@ -126,28 +147,8 @@ src/
 └── index.css             # Global styles
 ```
 
-## 🎯 Assessment Requirements Met
-
-✅ **Two Chart Types**: Area chart and bar chart implemented  
-✅ **ApexCharts Integration**: Using react-apexcharts library  
-✅ **Responsive Container**: Mobile-first design principles  
-✅ **Data Visualization**: Both datasets accurately represented  
-✅ **Modern UI/UX**: Creator-focused design aesthetic  
-✅ **Performance Optimized**: Fast loading with smooth animations
-
-## 🔮 Future Enhancements
-
-- Real-time data integration
-- Additional chart types (pie, donut, scatter)
-- Date range selection
-- Export functionality
-- Dark/light mode toggle
-- Advanced filtering options
-
 ## 📞 Contact
 
 Built as part of the Fluency Web Designer/Frontend Developer assessment.
-
----
 
 _This project demonstrates expertise in modern React development, data visualization, and creator-focused UI/UX design._
