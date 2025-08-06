@@ -24,11 +24,15 @@ const UserMetrics = () => {
 
   const dateLabels = generateDateLabels();
   
-  // Sample data
-  const newUsersData = [3, 5, 1, 0, 2, 7, 1, 9, 13, 3];
-  const usersGainedLostData = [2, -3, 5, 1, -1, 0, -2, 4, 1, -2];
+  // Sample data - full arrays provided
+  const newUsersDataFull = [3, 5, 1, 0, 2, 7, 1, 9, 13, 3, 5, 6, 1, 0];
+  const usersGainedLostDataFull = [2, -3, 5, 1, -1, 0, -2, 4, 1, -2, 5, 7, -3, 0, 1, -1];
+  
+  // Use last 10 days of data for charts
+  const newUsersData = newUsersDataFull.slice(-10);
+  const usersGainedLostData = usersGainedLostDataFull.slice(-10);
 
-  // Calculate totals for summary cards
+  // Calculate totals for summary cards (using last 10 days data)
   const totalNewUsers = newUsersData.reduce((sum, val) => sum + val, 0);
   const netUserChange = usersGainedLostData.reduce((sum, val) => sum + val, 0);
 
@@ -206,6 +210,14 @@ const UserMetrics = () => {
     const maxValue = Math.max(...data);
     const yAxisMin = minValue < 0 ? Math.floor(minValue * 1.1) : 0;
     const yAxisMax = Math.ceil(maxValue * 1.1);
+    
+    // Transform data to make zero values visible (small non-zero values for display)
+    const displayData = data.map(value => {
+      if (value === 0) {
+        return 0.1; // Small positive value to make bar visible
+      }
+      return value;
+    });
 
     // Create colors array with current day highlighted and non-current days more muted
     const barColors = data.map((value, index) => {
@@ -216,7 +228,7 @@ const UserMetrics = () => {
       } else if (value < 0) {
         return isCurrentDay ? '#dc2626' : '#fca5a5'; // Darker red for current day, much lighter/muted for others
       } else {
-        return '#d1d5db'; // More muted gray for zero values
+        return isCurrentDay ? '#6b7280' : '#9ca3af'; // Darker gray for current day zero, lighter for others
       }
     });
 
@@ -247,7 +259,23 @@ const UserMetrics = () => {
           columnWidth: '70%',
           endingShape: 'rounded',
           borderRadius: 2,
-          distributed: true // This allows individual bar colors
+          distributed: true, // This allows individual bar colors
+          dataLabels: {
+            position: 'center'
+          }
+        }
+      },
+      states: {
+        hover: {
+          filter: {
+            type: 'none'
+          }
+        },
+        active: {
+          allowMultipleDataPointsSelection: false,
+          filter: {
+            type: 'none'
+          }
         }
       },
 
@@ -335,12 +363,13 @@ const UserMetrics = () => {
           show: true
         },
         custom: function({series, seriesIndex, dataPointIndex, w}) {
-          const value = series[seriesIndex][dataPointIndex];
+          // Use original data value for tooltip, not the displayed value
+          const originalValue = data[dataPointIndex];
           const date = w.globals.labels[dataPointIndex] || w.config.xaxis.categories[dataPointIndex] || 'N/A';
-          const isPositive = value > 0;
-          const isNegative = value < 0;
+          const isPositive = originalValue > 0;
+          const isNegative = originalValue < 0;
           const valueColor = isPositive ? '#22c55e' : isNegative ? '#ef4444' : '#9ca3af';
-          const formattedValue = isPositive ? `+${value}` : value;
+          const formattedValue = isPositive ? `+${originalValue}` : originalValue;
           
           return '<div style="background-color: rgb(0, 20, 14); color: white; padding: 8px 12px; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.1);">' +
                  '<div style="font-size: 11px; color: rgba(255, 255, 255, 0.7); margin-bottom: 4px;">' + date + '</div>' +
@@ -356,7 +385,7 @@ const UserMetrics = () => {
 
     const series = [{
       name: 'Users Gained/Lost',
-      data: data
+      data: displayData
     }];
 
 
